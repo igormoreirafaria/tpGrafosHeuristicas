@@ -6,13 +6,13 @@ COMPFLAGS := 	-Wall -O9 -c
 LINKFLAGS := 	-o
 
 geral:
-	gcc	$(COMPFLAGS) 	*.c
+	gcc	$(COMPFLAGS) 	*.c 	-g
 hiper:	geral
 	gcc	$(LINKFLAGS)	$(MAINFILE)	$(MAINFILE).o 	$(HIPER).o 	-g
 heuristica:	geral
 	gcc	$(LINKFLAGS)	$(MAINFILE)	$(MAINFILE).o	$(HEURISTICA).o 	-g
 grafo:	geral
-	gc	$(LINKFLAGS)	$(MAINGRAFO)	$(GRAFOMAIN).c	-g
+	gcc	$(LINKFLAGS)	$(MAINGRAFO)	$(GRAFOMAIN).c	-g
 clear:
 	rm -f	*.o	$(MAINFILE)	$(MAINGRAFO)
 run:

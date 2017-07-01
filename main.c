@@ -4,13 +4,13 @@ int main (){
     Grafo *G;
     int *prim, *prox, *tabela, **matriz;
 
-    matriz = (int**)malloc(9*sizeof(int*));
+    matriz = (int**)malloc(10*sizeof(int*));
     for(int i=0;i<9;i++){
         matriz[i] = (int*)malloc(9*sizeof(int));
 
     }
     for(int i=0;i<9;i++){
-          for(int j=0;j<9;j++){
+          for(int j=0;j<10;j++){
             matriz[i][j] = -1;
             if(j==0){
                 matriz[i][j] = i+1;
@@ -20,6 +20,13 @@ int main (){
 
     tabela = (int*) malloc(sizeof(int) * 81);
     leitura(G, tabela, matriz);
+
+    for(int i=0;i<9;i++) {
+          for(int j=0;j<10;j++) {
+            printf("%d ", matriz[i][j]);
+          }
+          printf("\n");
+      }
 
     prim = malloc(81*sizeof(int));
     prox = malloc(9*27*sizeof(int));
@@ -39,7 +46,18 @@ int main (){
         }
 
     }
+    int conjuntos;
+    printf("ENTRA NA COLORACAO\n");
+    conjuntos = coloracaoSequencial(G, tabela, &matriz, prim, prox);
+    printf("SAI DA COLORACAO\n");
+    printf("%d\n", conjuntos);
 
+    for(int i=1;i<11;i++) {
+          for(int j=0;j<10;j++) {
+            printf("%d ", matriz[i][j]);
+          }
+          printf("\n");
+      }
     //backtracking(G, prim, prox);
 
     free(prim);
@@ -50,8 +68,6 @@ int main (){
 }
 
 void destroi_grafo(Grafo *G){
-
-
 
     for(int i=0;i<27;i++){
         free((G)->lista[i].prox->vertices);
@@ -127,17 +143,25 @@ void leitura(Grafo *G, int *tabela, int **matriz){
     char *aux = malloc(sizeof(char));
     FILE *arq = fopen("sudoku.txt", "r");
     leitura = malloc(sizeof(char)*81);
-    while(!feof(arq)){
+
         fscanf(arq, "%s", leitura);
 
         for(int i=0; i<81 ; i++){
             *aux = leitura[i];
             tabela[i] = atoi(aux);
-            if(tabela[i]){
-
+            printf("%d", tabela[i]);
+            if(tabela[i] != 0){ //
+                for(int j=1;j<10 ;j++){
+                    if(matriz[tabela[i]-1][j] == -1){
+                        matriz[tabela[i]-1][j] = i;
+                        tabela[i] = -1;
+                        break;
+                    }
+                }
             }
         }
-        j++;
+        getchar();
+       /* j++;
         if(j == 9){
             j=0;
             i++;
@@ -145,8 +169,7 @@ void leitura(Grafo *G, int *tabela, int **matriz){
 
         if(i==9){
             break;
-        }
-    }
+        }*/
 
     fclose(arq);
 }
