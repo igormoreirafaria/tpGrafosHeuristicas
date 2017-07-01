@@ -48,11 +48,11 @@ int main (){
     }
     int conjuntos;
     printf("ENTRA NA COLORACAO\n");
-    conjuntos = coloracaoSequencial(G, tabela, &matriz, prim, prox);
+    conjuntos = coloracaoSequencial(G, tabela, matriz, prim, prox);
     printf("SAI DA COLORACAO\n");
-    printf("%d\n", conjuntos);
+    
 
-    for(int i=1;i<11;i++) {
+    for(int i=1;i<conjuntos;i++) {
           for(int j=0;j<10;j++) {
             printf("%d ", matriz[i][j]);
           }

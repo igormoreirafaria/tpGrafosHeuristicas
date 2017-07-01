@@ -1,6 +1,6 @@
 #include "heuristica.h"
 
-int coloracaoSequencial(Grafo *G, int* tabela, int*** matriz, int* prim, int* prox) {
+int coloracaoSequencial(Grafo *G, int* tabela, int** matriz, int* prim, int* prox) {
     int conjuntos =9;
     for(int i=0; i<G->numVertice; i++){
         printf("%d \n", i);
@@ -20,7 +20,7 @@ int coloracaoSequencial(Grafo *G, int* tabela, int*** matriz, int* prim, int* pr
             }
             if(tabela[i]!=-1){
                 conjuntos++;
-                matriz = (int**)realloc(&matriz, sizeof(int*)*conjuntos);
+                matriz = (int**)realloc(matriz, sizeof(int*)*conjuntos);
                 matriz[conjuntos-1] = (int*)malloc(sizeof(int)* 10);
                 for(int i=1; i<10; i++){
                     matriz[conjuntos-1][i] = -1;
