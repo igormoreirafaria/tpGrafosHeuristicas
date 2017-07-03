@@ -4,7 +4,7 @@ int main (){
     Grafo *G;
     int *prim, *prox, *tabela, **matriz;
 
-    matriz = (int**)malloc(10*sizeof(int*));
+    matriz = (int**)malloc(81*sizeof(int*));
     for(int i=0;i<9;i++){
         matriz[i] = (int*)malloc(9*sizeof(int));
 
@@ -52,7 +52,7 @@ int main (){
     printf("SAI DA COLORACAO\n");
     
 
-    for(int i=1;i<conjuntos;i++) {
+    for(int i=0;i<conjuntos;i++) {
           for(int j=0;j<10;j++) {
             printf("%d ", matriz[i][j]);
           }

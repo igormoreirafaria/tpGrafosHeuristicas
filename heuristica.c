@@ -20,7 +20,6 @@ int coloracaoSequencial(Grafo *G, int* tabela, int** matriz, int* prim, int* pro
             }
             if(tabela[i]!=-1){
                 conjuntos++;
-                matriz = (int**)realloc(matriz, sizeof(int*)*conjuntos);
                 matriz[conjuntos-1] = (int*)malloc(sizeof(int)* 10);
                 for(int i=1; i<10; i++){
                     matriz[conjuntos-1][i] = -1;
